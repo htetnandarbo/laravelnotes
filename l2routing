@@ -19,3 +19,5 @@ php artisan route:list
 Route::get('/hello/developers/{dev}',function($dev){
  echo "Hello $dev developers";
 });
+
+Route::get('/hi/{dev}',[Controller::class,'greet']);
