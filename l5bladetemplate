@@ -3,3 +3,11 @@
 
 @if()
 @endif
+
+# Navigating Routes With Html Link Element
+# By URL
+<a href="{{url('url')}}"></a>
+
+# By Route
+<a href="{{route('routename')}}"></a>
+
