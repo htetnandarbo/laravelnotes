@@ -5,8 +5,8 @@ Route::get('/',function(){
   return view('welcome');
 });
 
-# With Class and Method
-Route::get('/',);
+# With Controller and Method
+Route::get('/',[Controller::class,'greet']);
 
 ////////////////////////////////////////////////////////////////////////////////////
 
