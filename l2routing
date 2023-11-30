@@ -21,3 +21,9 @@ Route::get('/hello/developers/{dev}',function($dev){
 });
 
 Route::get('/hi/{dev}',[Controller::class,'greet']);
+
+////////////////////////////////////////////////////////////////////////////////////
+
+# Route Name
+Route::get('/hi/{dev}',[Controller::class,'greet'])->name('routename');
+
