@@ -1,0 +1,7 @@
+# Create or Install Laravel Project
+composer create-project laravel/laravel project-name
+
+# Host or Run Laravel Project
+php artisan serve
+
+
