@@ -1,0 +1,18 @@
+# Routes Registration
+
+# With Closure Function
+Route::get('/',function(){
+  return view('welcome');
+});
+
+////////////////////////////////////////////////////////////////////////////////////
+
+# Check Route List
+php artisan route:list
+
+////////////////////////////////////////////////////////////////////////////////////
+
+# Routing Parameters or Dynamic Routes
+Route::get('/hello/developers/{dev}',function($dev){
+ echo "Hello $dev developers";
+});
