@@ -5,6 +5,9 @@ Route::get('/',function(){
   return view('welcome');
 });
 
+# With Class and Method
+Route::get('/',);
+
 ////////////////////////////////////////////////////////////////////////////////////
 
 # Check Route List
