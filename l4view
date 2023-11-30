@@ -8,7 +8,7 @@ return view('foldername.filename');
 # Passing Data to a View
 # With Aray
 return view('filename',['key'=>'value','test'=>'abc']);
-view file မှာပြန်ခေါ် => <?php echo $key ?>
+view file မှာပြန်ခေါ် =>{{$key}}
 
 # With Compact()
 $title= "abc";
