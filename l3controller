@@ -1,0 +1,2 @@
+# Make Controller
+php artisan make:controller TestController 
