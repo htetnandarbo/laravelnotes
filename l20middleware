@@ -1,0 +1,12 @@
+# create middleware
+php artisan make:middleware MiddlewareName
+
+# register middleware
+app\http\Kernal.php => $middlewareAliases
+'name' => App\Http\Middleware\MiddlewareName::class
+
+# web.php
+Route::get()->middleware('name');
+
+# MiddlewareName.php
+some logic
