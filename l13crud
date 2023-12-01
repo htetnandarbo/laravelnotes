@@ -1,0 +1,93 @@
+# read
+Model::all()  // fetch all data -> array
+Model::find($id) // fetch single data -> object
+Model::where($column,$var)->get() //fetch specific multiple data
+Model::where($column,$var)->first() //fetch specific single data
+
+# web.php
+Route::get('articles',[ArticleController::class,'index']);
+
+# controller
+public function index(){
+  $articles = Model::all();
+  return view('',compact('articles'));
+}
+
+# admin.blade.php
+{{$articles->title}}
+
+/////////////////////////////////////////////////////////////////////////
+
+# delete
+Model::find($id)->delete();
+
+# web.php 
+Route::delete('articles/{id}',[ArticleController::class,'delete']);
+
+# index.blade.php
+@method('delete')
+
+# controller
+public function delete($id){
+ Model::find($id)->delete();
+ return back()
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+# create
+ Model::create()
+
+# web.php 
+Route::post('articles/{id}',[ArticleController::class,'store']);
+
+# controller
+public function store(Request $request){
+  Model::create([
+      'column name' => $request->forminputname
+  ]);
+  return back();
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+# edit
+
+# web.php 
+Route::post('articles/{id}/edit',[ArticleController::class,'edit']);
+
+
+# controller
+public function edit($id){
+   $article = Model::find($id);
+   return view('edit',compact('article'));
+}
+
+# admin.blade.php(old data)
+{{$articles->title}}
+
+/////////////////////////////////////////////////////////////////////////
+
+#update
+Model::find($id)->update()
+
+# web.php 
+Route::put('articles/{id}',[ArticleController::class,'update']);
+
+# index.blade.php
+@method('put')
+
+# controller
+public function update(Request $request,$id){
+   $article = Model::find($id)->update([
+      'column name' => $request->forminputname
+  ]);
+  return redirect('url');   
+}
+
+
+
+
+
+
+
