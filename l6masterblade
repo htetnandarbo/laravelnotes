@@ -1,0 +1,28 @@
+<html>
+<head></head>
+<body>
+  <nav>
+    <a href="{{url('home')}}">Home</a>
+    <a href="{{url('about')}}">About</a>
+  </nav>
+
+  @yield("content")
+  
+</body>
+</html>
+
+/////////////////////////////////////////////////
+
+@extends("master.blade.php")
+
+@section("content")
+  <h1>Home Page</h1>
+@endsection
+
+/////////////////////////////////////////////////
+
+@extends("master.blade.php")
+
+@section("content")
+  <h1>About Page</h1>
+@endsection
