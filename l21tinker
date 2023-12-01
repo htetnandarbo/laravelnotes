@@ -1,0 +1,11 @@
+# enter to tinker
+php artisan tinker
+
+# exit from tinker
+exit
+
+# retrieve data with tinker
+App\Models\Nrc::all();
+
+# create data with tinker
+App\Models\Nrc::create(["no"=>"1234","employee_id"=>5]);
