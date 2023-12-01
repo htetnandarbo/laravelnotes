@@ -1,0 +1,26 @@
+table name => plural noun
+eg - articles,posts,men
+
+model name => singular noun
+eg - ModelOne,Man
+
+class name => CapitalCase
+
+method,variable name => camelCase
+
+database name,table name,column name => snake_case
+
+//////////////////////////////////////////////////////////////
+
+# Route Naming Convention
+
+URL                                               Name
+articles                                          articles   
+articles/create                                   articles.create
+articles/store                                    articles.store
+articles/{id}/edit                                articles.edit
+articles/{id}/update                              articles.update
+articles/{id}/delete                              articles.delete
+users/{id}/send-noti-when-event-fired             users.sendNotiWhenEventFired
+users/{id}/detail                                 users.detail
+users-detail/{id}                                 users.detail
