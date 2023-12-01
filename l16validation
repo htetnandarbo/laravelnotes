@@ -1,0 +1,28 @@
+# validate form request
+# $request->validate($array1,optional $array2);
+# $array1 => Validation rule
+# array2 => Custom error msg
+
+$request->validate([
+  'forminputname' => 'required|unique::article,title'
+]);
+
+# Catch error in blade file
+$errors
+
+<input type="text" value="{{old('title')}}" class="@error('title') is-invalid @enderror" />
+# <span>{{$errors->first('title')}}</span>
+
+@error('title')
+<span class="invalid-feedback">{{ $message }}</span>
+@enderror
+
+////////////////////////////////////////////////////////////
+
+# Validation Rules
+required
+min:5
+max:10
+unique::tablename,columnname
+int
+email
