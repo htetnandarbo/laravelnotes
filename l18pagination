@@ -1,0 +1,16 @@
+$articles = Model::paginate(5);
+
+/////////////////////////////////////////
+
+#blade
+{{$articles->links("pagination::bootstrap-5")}}
+
+or
+
+# App\Providers\AppServiceProvider
+
+use Illuminate\Pagination\Paginator
+Paginator::useBootstrapFive();
+
+#blade
+{{$articles->links()}}
