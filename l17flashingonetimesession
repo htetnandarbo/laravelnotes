@@ -1,0 +1,10 @@
+# Two ways to flash one time session
+
+# controller
+session()->flash('key','value');
+return redirect('url')->with('key','value');
+
+# Catch that session on blade
+@if(session()->has('key'))
+{{ session()->get('key') }}
+@endif
