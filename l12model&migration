@@ -1,0 +1,33 @@
+table တစ်ခုမှာ model တစ်ခု
+# Create Model with migration
+php artisan make:model ModelName -m
+
+# connect to database
+php artisan migrate
+
+# understanding class invoking and calling its methods
+ModelOne::create()
+ModelOne::all()
+
+#column's type
+string()
+text()
+longText()
+boolean()
+tinyInteger()
+integer()
+bigInteger()
+unsignedTinyInteger()
+unsignedInteger()
+unsinedBigInteger()
+float()
+decimal()
+double()
+
+date
+datetime
+time
+year()
+unique
+nullable
+default($value)
