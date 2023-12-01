@@ -1,0 +1,10 @@
+# Redirecting to specific route or page
+
+# Redirect to a page by using route url
+return redirect("route-url")
+
+# Redirect to a page by using route name
+return redirect()->route("route-name")
+
+# Return to current page
+return back()
