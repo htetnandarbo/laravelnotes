@@ -1,0 +1,10 @@
+# file1.blade.php
+<nav>
+  <a href="{{url('home')}}">Home</a>
+  <a href="{{url('about')}}">About</a>
+  <p>{{$key}}</p>
+</nav>
+
+# file2.blade.php
+@include("file1",['key' => 'value'])
+<p>Hello I am paragraph.</p>
