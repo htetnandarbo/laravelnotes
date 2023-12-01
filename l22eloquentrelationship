@@ -1,0 +1,133 @@
+        employee                                          nrcs
+id       name      city_id                      id           no           employee_id
+1       mg mg          3                         1          1234              1
+2       ma ma          2                         2          5678              2
+3       ko ko          3                         3          91011             3
+
+# အရင်ဖန်တီးမယ့် ကောင်ရဲ့ id ကို နောက်မှဖန်တီးမယ့် ကောင်ရဲ့ table မှာသွားထည့်
+
+# One To One
+foreign key ရှိတဲ့ကောင်ကို (nrcs) => $this->belongsTo(Employee::class)
+# Nrc Model
+function employee(){
+  return $this->belongsTo(Employee::class);
+}
+
+# Employee Model
+function nrc(){
+   return $this->hasOne(Nrc::class,'employee_id','id')
+}
+
+# Controller
+public function index(){
+  $employee = Employee::find(2);
+  return $employee->nrc;
+
+  $employees = Employee::with('nrc')->get();
+  return $employees;
+}
+
+public function index(){
+  $nrc = Nrc::find(1);
+  return $nrc->employee;
+
+   $nrcs = Nrc::with('employee')->get();
+  return $nrcs;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+# One To Many
+    Cities                                                                                      
+id          name                        
+1          mandalay
+2          yangon
+3          nay pyi taw  
+
+        employee   
+id       name      city_id                     
+1       mg mg          3                        
+2       ma ma          2                        
+3       ko ko          3   
+
+
+# City Model                                      
+functon employees(){
+  return $this->hasMany(Employee::class);
+}
+
+# Employee Model
+function city(){
+    return $this->belongsTo(City::class);
+}
+
+# Controller
+public function index(){
+  $city = City::find(1);
+  return $city->employees;
+
+  $cities = City::with('employees')->get();
+  return $citites;
+}
+
+public function index(){
+  $employee = Employee::find(1);
+  return $employee->city;
+
+  $employees = Employee::with('city')->get();
+  return $employees;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+# Many To Many
+         employee   
+id       name      city_id                     
+1       mg mg          3                        
+2       ma ma          2                        
+3       ko ko          3 
+
+
+     position
+id           name
+1          Developer
+2          Designer
+3          Tester
+
+# dummy table
+        employee_position
+id          employee_id            position_id
+1                1                        1
+2                2                        3
+3                3                        2
+4                3                        3
+
+# Employee model
+function positions(){
+  return $this->belongsToMany(Position::class,'employee_positions');
+}
+
+# Position Model
+function employees(){
+  return $this->belongsToMany(Employee::class,'employee_positions');
+}
+
+# controller
+public function index(){
+  $position = Position::find(1);
+  return $position->employees;
+
+  $positions = Position::with('employees')->get();
+  return $positions;
+}
+
+public function index(){
+  $employee = Employee::find(1);
+  return $employee->positions;
+
+  $employees = Employee::with('positions')->get();
+  return $employees;
+}
+
+
+
