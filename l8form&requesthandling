@@ -3,3 +3,10 @@ $request->all
 
 # get single form input
 $request->name
+
+# some important method of request
+$request->url()
+$request->fullUrl()
+$request->path()
+$request->method()
+$request->root()
