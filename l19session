@@ -1,0 +1,17 @@
+# Store session data
+session()->put('key','value')
+
+# Access Session Data
+session()->get('key')
+
+# Delete Session Data
+session()->forget('key')
+
+# Delete all session
+session()->flush()
+
+# Retriving All Session
+session()->all()
+
+# push session
+session()->push('key','value');
