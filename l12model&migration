@@ -4,6 +4,8 @@ php artisan make:model ModelName -m
 
 # connect to database
 php artisan migrate
+php artisan migrate:fresh
+php artisan migrate:refresh --path=copy relative path
 
 # understanding class invoking and calling its methods
 ModelOne::create()
