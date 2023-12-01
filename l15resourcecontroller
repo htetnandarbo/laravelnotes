@@ -1,0 +1,5 @@
+# Creating Resource Controller
+php artisan make:controller StudentController -r
+
+# Resource Route Registration
+Route::resource('students',StudentController::class);
