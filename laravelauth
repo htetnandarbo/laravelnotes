@@ -21,7 +21,7 @@ app/Http/Controllers/HomeController ထဲက
         $this->middleware('auth');
     }
 
-ကို ‌app/Http/Controllers/login ဝင်လိုက်ရင် ရောက်တဲ့ page ရဲ့ controller မှာသွားထည့်
+ကို ‌app/Http/Controllers/admincontroller မှာသွားထည့်
 
 or 
 
@@ -96,7 +96,16 @@ if(confirm('Are you sure to logout?')){ document.getElementById('logout-form').s
 2. kernal.php မှာ route ကို register လုပ်
    'isadmin' => IsAdmin::class,
 
-3. web.php မှာ
+3. ‌app/Http/Controllers/admincontroller မှာ
+
+public function __construct()
+    {
+        $this->middleware('auth','isadmin');
+    }
+
+or
+
+web.php မှာ
 
 Route::group(
     ['prefix' => 'admin', 'middleware' => ['auth', 'isadmin']],
