@@ -1,0 +1,111 @@
+composer require laravel/ui
+php artisan ui vue --auth
+npm install
+npm run dev
+
+---------------------------------------------------------------------------------------------
+
+# login ဝင်လိုက်ရင် ရောက်တဲ့ page ကိုပြောင်းလဲခြင်း
+
+app/Providers/RouteServiceProvider ထဲက
+public const HOME = '/home'; ကိုပြောင်း
+
+----------------------------------------------------------------------------------------------
+
+# login ဝင်လိုက်ရင် ရောက်တဲ့ page ကို login မလုပ်ထားပဲဝင်လို့မရအောင်လုပ်ခြင်း
+
+app/Http/Controllers/HomeController ထဲက
+
+ public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+ကို ‌app/Http/Controllers/login ဝင်လိုက်ရင် ရောက်တဲ့ page ရဲ့ controller မှာသွားထည့်
+
+or 
+
+web.php မှာ
+
+Route::group(
+    ['middleware' => ['auth']],
+    function () {
+        Route::get('/adminpanel', [AdminController::class, 'index'])->name('adminindex');
+    }
+);
+
+-----------------------------------------------------------------------------------------------
+
+# logout
+
+views/layouts/app.blade.php က logout function ကိုယူ
+
+<form action="{{route('logout')}}" method="post">
+@csrf
+<button onclick="return confirm('Are you sure to logout?');">Logout</button>
+</form>
+
+-----------------------------------------------------------------------------------------------
+
+# login ဝင်ထားတဲ့ user name ကိုယူ
+{{Auth::user()->name}}
+
+-----------------------------------------------------------------------------------------------
+
+# role ခွဲခြင်း(admin role ဆိုရင် admin panel, user role ဆိုရင် user panel)
+
+// protected $redirectTo = RouteServiceProvider::HOME;
+    protected function authenticated(Request $request, $user)
+    {
+        if (Auth::user()->role == 'admin') {
+            return redirect()->route('adminindex');
+        } else {
+            return redirect()->route('userindex');
+        }
+    }
+
+-----------------------------------------------------------------------------------------------
+
+# user login ဝင်ထားလျှင် user panel မှာ login ဝင်ထားတဲ့ user name ကိုထုတ်ခြင်း
+
+ @if(Auth::check())
+
+<li class="nav-item me-4"><a href="" class="nav-link">{{strToUpper(Auth::user()->name)}}</a>
+</li>
+ <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+if(confirm('Are you sure to logout?')){ document.getElementById('logout-form').submit();}">
+  Logout</a>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+@csrf
+</form>
+</li>
+
+@else
+
+<li class="nav-item me-4"><a href="{{route('login')}}" class="nav-link">Login</a></li>
+<li class="nav-item"><a href="{{route('register')}}" class="nav-link">Register</a></li>
+
+@endif
+
+-----------------------------------------------------------------------------------------------
+
+# url ကနေရိုက်ထည့်ရင် admin panel ကိုသွားမရအောင်လုပ်ခြင်း (middleware)
+
+1. php artisan make:middleware IsAdmin
+
+2. kernal.php မှာ route ကို register လုပ်
+   'isadmin' => IsAdmin::class,
+
+3. web.php မှာ
+
+Route::group(
+    ['prefix' => 'admin', 'middleware' => ['auth', 'isadmin']],
+    function () {
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('adminindex');
+    }
+);
+
+
+
+
+
