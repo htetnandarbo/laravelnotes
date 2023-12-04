@@ -54,6 +54,8 @@ views/layouts/app.blade.php က logout function ကိုယူ
 
 # role ခွဲခြင်း(admin role ဆိုရင် admin panel, user role ဆိုရင် user panel)
 
+Auth/LoginController
+
 // protected $redirectTo = RouteServiceProvider::HOME;
     protected function authenticated(Request $request, $user)
     {
