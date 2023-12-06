@@ -1,0 +1,21 @@
+ public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'categoryid' => 'required',
+            'image' => 'required|image|mimes:png,jpg,jpeg'
+        ]);
+
+        $imagename = uniqid() . '_' . $request->image->getClientOriginalName();
+        $request->image->storeAs('public/blogimages', $imagename);
+
+        Blog::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'category_id' => $request->categoryid,
+            'image' => $imagename
+        ]);
+
+        return redirect()->route('blogs.index')->with('msg', 'Successfully Created!');
+    }
