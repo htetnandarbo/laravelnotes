@@ -19,3 +19,7 @@
 
         return redirect()->route('blogs.index')->with('msg', 'Successfully Created!');
     }
+
+
+# read image
+php artisan storage:link
