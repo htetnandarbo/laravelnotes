@@ -1,0 +1,19 @@
+public function showLoginForm()
+    {
+        $previousURL = url()->previous();
+        $baseURL = url()->to('/');
+
+        if ($previousURL != $baseURL . '/login') {
+            session()->put('url.intended', $previousURL);
+        }
+        return view('auth.login');
+    }
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected function authenticated(Request $request, $user)
+    {
+        if (Auth::user()->role == 'admin') {
+            return redirect()->route('adminindex');
+        } else {
+            $this->showLoginForm();
+        }
+    }
