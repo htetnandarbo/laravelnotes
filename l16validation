@@ -4,7 +4,7 @@
 # array2 => Custom error msg
 
 $request->validate([
-  'forminputname' => 'required|unique::article,title'
+  'forminputname' => 'required|unique:article,title'
 ]);
 
 # Catch error in blade file
