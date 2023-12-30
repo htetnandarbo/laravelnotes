@@ -1,0 +1,41 @@
+# add softdelete(deleted_at) column to job table
+ php artisan make:migration add_soft_delete_columns_to_jobs
+  php artisan migrate
+
+# add_soft_delete_columns_to_jobs.php
+
+   public function up(): void
+    {
+        Schema::table('jobs', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+    }
+    
+    public function down(): void
+    {
+        Schema::table('jobs', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
+    }
+
+  # Job Model
+   use SoftDeletes;
+
+  # Job Controller
+ public function destroy(string $id)
+    {
+        Job::find($id)->delete();
+        return redirect()->route('jobs.index');
+    }
+
+    public function oldjob()
+    {
+        $jobs = Job::onlyTrashed()->get();
+        return view('employer.job.oldjob', compact('jobs'));
+    }
+
+    public function restore(string $id)
+    {
+        Job::where('id', $id)->restore();
+        return redirect()->route('jobs.old');
+    }
